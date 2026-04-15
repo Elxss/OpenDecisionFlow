@@ -126,7 +126,7 @@ Default account: `admin` / `admin` - change it.
 
 Requires a domain pointing to your server and ports 80/443 open. Clone the repo first.
 
-1. Edit `docker-compose.yml` — set `CORS_ORIGIN` to `https://yourdomain.com` and `COOKIE_SECURE` to `true`.
+1. Edit `docker-compose.yml` - set `CORS_ORIGIN` to `https://yourdomain.com` and `COOKIE_SECURE` to `true`.
 
 2. Ensure DNS points to your server and ports 80/443 are open.
 
@@ -145,7 +145,7 @@ Caddy fetches the Let's Encrypt certificate automatically on first boot.
 `backend/.env` (copy from `backend/.env.example`):
 
 ```env
-# Admin account — set before first run
+# Admin account - set before first run
 # If omitted, created as admin / admin with a forced password change on first login
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=changeme
@@ -192,10 +192,10 @@ Frontend application handling the user interface and client-side logic.
 ---
 
 ### docker-compose.yml
-HTTP stack — pulls prebuilt images from GHCR.
+HTTP stack - pulls prebuilt images from GHCR.
 
 ### docker-compose.https.yml
-HTTPS override — adds Caddy with automatic Let’s Encrypt.
+HTTPS override - adds Caddy with automatic Let’s Encrypt.
 
 ### Caddyfile
 Reverse proxy configuration and TLS setup.
