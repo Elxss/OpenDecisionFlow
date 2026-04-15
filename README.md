@@ -36,6 +36,11 @@
 
 ---
 
+## Screenshots
+
+![Editor](frontend/public/screenshot1.png)
+![History](frontend/public/screenshot2.png)
+
 ## About
 
 Easy, Free, Opensource

@@ -65,13 +65,13 @@ export default function Landing() {
               </p>
             </div>
             <div className="showcase-screen">
-              <span>screenshot</span>
+              <img src="/screenshot1.png" alt="Editor screenshot" />
             </div>
           </div>
 
           <div className="showcase-card">
             <div className="showcase-screen">
-              <span>screenshot</span>
+              <img src="/screenshot2.png" alt="History screenshot" />
             </div>
             <div className="showcase-text">
               <h2 className="showcase-title">See who answered what</h2>
