@@ -45,8 +45,10 @@
 
 Easy, Free, Opensource
 
-No SaaS, no tracking, no nonsense. Run it yourself, on your own server, and own the data completely!
+No SaaS, no tracking, no nonsense. 
+Run it yourself, on your server, and own the data completely!
 
+quick overview of the features :
 - **Decision trees** - questions with branching choices, free-text inputs, date pickers, final result
 - **Auth** - server-side sessions, `httpOnly` cookie, bcrypt passwords
 - **Access control** - public questionnaires, private ones behind an access code, guest mode (no account required)
