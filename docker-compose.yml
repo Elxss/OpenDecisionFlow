@@ -1,0 +1,63 @@
+# OpenDecisionFlow — HTTP stack
+#
+# No git clone needed. Just:
+#   curl -O https://raw.githubusercontent.com/Elxss/OpenDecisionFlow/main/docker-compose.yml
+#   docker compose up -d
+#
+# ─── Optional env vars ─────────────────────────────────────────────────────────
+#   ADMIN_USERNAME   admin account username  (default: admin)
+#   ADMIN_PASSWORD   admin account password  (default: admin, forced change on first login)
+#
+# Pass inline:
+#   ADMIN_PASSWORD=yourpassword docker compose up -d
+#
+# Or create a .env file next to this file:
+#   ADMIN_USERNAME=admin
+#   ADMIN_PASSWORD=changeme
+
+services:
+
+  backend:
+    image: ghcr.io/elxss/opendecisionflow/backend:latest
+    restart: unless-stopped
+    environment:
+      DB_PATH: "/app/data/data.db"
+      CORS_ORIGIN: "*"
+      COOKIE_SECURE: "false"
+      SESSION_DURATION_DAYS: "7"
+      ADMIN_USERNAME: "${ADMIN_USERNAME:-admin}"
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD:-}"
+      RATE_WINDOW_MS: "60000"
+      RATE_LIMIT_AUTH: "10"
+      RATE_LIMIT_STRICT: "20"
+      RATE_LIMIT_SEARCH: "10"
+      RATE_LIMIT_DECISIONFLOW: "15"
+    volumes:
+      - db_data:/app/data
+    expose:
+      - "3001"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  frontend:
+    image: ghcr.io/elxss/opendecisionflow/frontend:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/nginx-health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  db_data:
+    name: opendecisionflow_data

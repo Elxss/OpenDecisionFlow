@@ -1,0 +1,37 @@
+# ─── HTTPS override ───────────────────────────────────────────────────────────
+# Usage:
+#   docker compose -f docker-compose.yml -f docker-compose.https.yml up -d
+#
+# Requirements:
+#   1. Set DOMAIN in .env  (e.g. DOMAIN=mysite.com)
+#   2. The domain must point to this server (DNS A/AAAA record)
+#   3. Ports 80 and 443 must be open on the server
+#   4. In backend/.env: COOKIE_SECURE=true and CORS_ORIGIN=https://mysite.com
+
+services:
+  # Frontend no longer exposes port 80 directly — Caddy handles it
+  frontend:
+    ports: []
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"   # HTTP/3
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      DOMAIN: ${DOMAIN}
+    depends_on:
+      frontend:
+        condition: service_healthy
+
+volumes:
+  caddy_data:
+    name: opendecisionflow_caddy_data
+  caddy_config:
+    name: opendecisionflow_caddy_config

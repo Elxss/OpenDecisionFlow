@@ -1,0 +1,5 @@
+# Replace with your domain (e.g. example.com)
+# Caddy handles Let's Encrypt automatically
+{$DOMAIN} {
+    reverse_proxy frontend:80
+}
