@@ -1386,7 +1386,7 @@
 }
 
 /* ─── Mobile responsive ─────────────────────────────────────────────────── */
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   /* Navbar */
   .navbar {
     padding: 0 16px;
