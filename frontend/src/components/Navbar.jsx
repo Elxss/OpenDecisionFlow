@@ -20,7 +20,10 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <NavLink to="/" className="navbar-brand" onClick={closeMenu}>
-        OpenDecisionFlow
+        <picture>
+          <source srcSet="/logo-dark.png" media="(prefers-color-scheme: dark)" />
+          <img src="/logo.png" alt="OpenDecisionFlow" className="navbar-logo" />
+        </picture>
       </NavLink>
       <button
         className="navbar-hamburger"

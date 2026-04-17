@@ -9,7 +9,12 @@ export default function Landing() {
   return (
     <div className="landing">
       <header className="landing-header">
-        <span className="brand">OpenDecisionFlow</span>
+        <span className="brand">
+          <picture>
+            <source srcSet="/logo-dark.png" media="(prefers-color-scheme: dark)" />
+            <img src="/logo.png" alt="OpenDecisionFlow" className="navbar-logo" />
+          </picture>
+        </span>
         <button className="cta-small" onClick={() => navigate("/login")}>
           Sign in →
         </button>

@@ -8,13 +8,13 @@ import { db } from "./db.js";
 const CORS_ORIGIN            = Bun.env.CORS_ORIGIN                          || "http://localhost:5173";
 const COOKIE_SECURE          = Bun.env.COOKIE_SECURE === "true";
 const RATE_WINDOW            = parseInt(Bun.env.RATE_WINDOW_MS)             || 60_000;
-const RATE_LIMIT_AUTH        = parseInt(Bun.env.RATE_LIMIT_AUTH)            || 10;
-const RATE_LIMIT_STRICT      = parseInt(Bun.env.RATE_LIMIT_STRICT)          || 20;
-const RATE_LIMIT_SEARCH      = parseInt(Bun.env.RATE_LIMIT_SEARCH)          || 10;
-const RATE_LIMIT_DECISIONFLOW = parseInt(Bun.env.RATE_LIMIT_DECISIONFLOW) || 15;
+const RATE_LIMIT_AUTH        = parseInt(Bun.env.RATE_LIMIT_AUTH)            || 20;
+const RATE_LIMIT_STRICT      = parseInt(Bun.env.RATE_LIMIT_STRICT)          || 40;
+const RATE_LIMIT_SEARCH      = parseInt(Bun.env.RATE_LIMIT_SEARCH)          || 20;
+const RATE_LIMIT_DECISIONFLOW = parseInt(Bun.env.RATE_LIMIT_DECISIONFLOW) || 30;
 const SESSION_DURATION_DAYS  = parseInt(Bun.env.SESSION_DURATION_DAYS)      || 7;
 const PORT                   = parseInt(Bun.env.PORT)                       || 3001;
-const MAX_BODY_SIZE           = parseInt(Bun.env.MAX_BODY_SIZE)              || 524_288;
+const MAX_BODY_SIZE           = parseInt(Bun.env.MAX_BODY_SIZE)              || 1_048_576;
 
 const app = new Hono();
 
